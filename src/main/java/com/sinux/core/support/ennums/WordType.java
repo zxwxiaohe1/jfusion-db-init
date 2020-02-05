@@ -50,7 +50,25 @@ public enum WordType {
         }
     },
     /**
-     * 副词
+     * 数量词
+     */
+    num(){
+        @Override
+        public String type() {
+            return "数量词";
+        }
+    },
+    /**
+     * 连词
+     */
+    conj(){
+        @Override
+        public String type() {
+            return "连词";
+        }
+    },
+    /**
+     * 及物动词
      */
     vt(){
         @Override
@@ -59,7 +77,7 @@ public enum WordType {
         }
     },
     /**
-     * 副词
+     * 介词
      */
     prep(){
         @Override
