@@ -60,12 +60,14 @@ public class WordFormat {
                         if (strs.length >= 1) {
                             word = strs[0].toLowerCase();
                         }
-                        if (strs.length >= 2) {
+                        if (strs.length >= 2 && StringUtil.isNotBlank(strs[1])) {
                             mean = strs[1];
                         }
                     }
-                    if (StringUtil.isNotBlank(word) && StringUtil.isNotBlank(mean)) {
+                    if (StringUtil.isNotBlank(word)) {
                         singleWord.setWord(word);
+                    }
+                    if (StringUtil.isNotBlank(mean)) {
                         if (mean.contains(ConstantUtil.FILE_PERIOD_ENGLISH)) {
                             strs = mean.split("\\" + ConstantUtil.FILE_PERIOD_ENGLISH);
                         }

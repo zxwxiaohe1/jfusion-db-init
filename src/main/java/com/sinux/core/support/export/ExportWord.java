@@ -34,10 +34,12 @@ public class ExportWord {
                 String mean = "";
                 String[] str = null;
                 String space = "";
+                Boolean row0 = true;
                 for (SingleWord sw : dataSet) {
                     System.out.println(sw.getWord());
+                    row0 = true;
                     for (int i = 0, size = sw.getMeans().size(); i < size; i++) {
-                        if (StringUtil.isBlank(sw.getWord())) {
+                        if (StringUtil.isBlank(sw.getWord()) || StringUtil.isBlank(sw.getMeans().get(i).getMean())) {
                             continue;
                         }
                         for (int j = 0, jsize = sw.getWord().trim().length(); j < jsize; j++) {
@@ -66,11 +68,12 @@ public class ExportWord {
                         }
                         str = null;
                         mean = "";
-                        if (i == 0) {
+                        if (row0) {
                             table = table + HtmlDataset.getTableData(
                                     HtmlDataset.setColor(sw.getWord().trim().toLowerCase() + ": ", "green")
                                             + HtmlDataset.setColor(wrtype, "#00B050") +
                                             HtmlDataset.setColor(sw.getMeans().get(i).getMean(), "green"));
+                            row0 = false;
                         } else {
                             table = table + HtmlDataset.getTableData(space + HtmlDataset.setColor(wrtype, "#00B050") +
                                     HtmlDataset.setColor(sw.getMeans().get(i).getMean(), "green"));
