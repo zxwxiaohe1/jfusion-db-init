@@ -2,11 +2,9 @@ package com.sinux.core.util;
 
 import com.sinux.modules.vo.DataBase;
 import com.sinux.core.support.ennums.DriverTypes;
-import com.sinux.core.utils.StringUtils;
 import com.sinux.modules.vo.MongoDB;
 import org.springframework.util.ObjectUtils;
 import org.yaml.snakeyaml.Yaml;
-
 import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
@@ -64,7 +62,7 @@ public class YMLUtil {
                         if (xaDataSource != null) {
                             String url = ((String) xaDataSource.get("url")).trim();
                             dataBase.setUrl((String) xaDataSource.get("url"));
-                            if (StringUtils.isNotBlank(url)) {
+                            if (StringUtil.isNotBlank(url)) {
                                 setSplitInfo(dataBase);
                             }
                             dataBase.setUserName((String) xaDataSource.get("username").toString());
@@ -81,7 +79,7 @@ public class YMLUtil {
                     if (mongodb != null) {
                         mongoDB.setEnabled(String.valueOf(mongodb.get("enabled")));
                         mongoDB.setUrl(String.valueOf(mongodb.get("uri")));
-                        if (StringUtils.isNotBlank(mongoDB.getUrl())) {
+                        if (StringUtil.isNotBlank(mongoDB.getUrl())) {
                             setSplitInfo(mongoDB);
                         }
                     }
@@ -108,7 +106,7 @@ public class YMLUtil {
         if (driverInfo == null) {
             return;
         }
-        if (StringUtils.isNotBlank(driverInfo.getUrl())) {
+        if (StringUtil.isNotBlank(driverInfo.getUrl())) {
             String[] args = driverInfo.getUrl().split(":");
             driverInfo.setDriver(DriverTypes.getDriverType(args[1].trim()));
             driverInfo.setType(args[1].trim());
@@ -151,7 +149,7 @@ public class YMLUtil {
         if (mongoDB == null) {
             return;
         }
-        if (StringUtils.isNotBlank(mongoDB.getUrl())) {
+        if (StringUtil.isNotBlank(mongoDB.getUrl())) {
             String[] args = mongoDB.getUrl().split(":");
             String ip = args[1].trim();
             String port = args[2].trim();
@@ -190,13 +188,13 @@ public class YMLUtil {
             boolean usernameLock = false;
             boolean passwordLock = false;
             while (null != (line = br.readLine())) {
-                if (line.trim().startsWith("url:") && !urlLock && StringUtils.isNotBlank(dataBase.getUrl())) {
+                if (line.trim().startsWith("url:") && !urlLock && StringUtil.isNotBlank(dataBase.getUrl())) {
                     line = line.substring(0, line.indexOf(":") + 1) + " " + dataBase.getUrl();
                     urlLock = true;
-                } else if (line.trim().startsWith("username:") && !usernameLock && StringUtils.isNotBlank(dataBase.getUserName())) {
+                } else if (line.trim().startsWith("username:") && !usernameLock && StringUtil.isNotBlank(dataBase.getUserName())) {
                     line = line.substring(0, line.indexOf(":") + 1) + " " + dataBase.getUserName();
                     usernameLock = true;
-                } else if (line.trim().startsWith("password:") && !passwordLock && StringUtils.isNotBlank(dataBase.getPassword())) {
+                } else if (line.trim().startsWith("password:") && !passwordLock && StringUtil.isNotBlank(dataBase.getPassword())) {
                     line = line.substring(0, line.indexOf(":") + 1) + " " + dataBase.getPassword();
                     passwordLock = true;
                 }
@@ -232,15 +230,15 @@ public class YMLUtil {
             Integer lineNum = 0;
             while (null != (line = br.readLine())) {
                 lineNum += 1;
-                if (line.trim().startsWith("enabled:") && StringUtils.isNotBlank(mongoDB.getEnabled())) {
+                if (line.trim().startsWith("enabled:") && StringUtil.isNotBlank(mongoDB.getEnabled())) {
                     if (lineNum>59 && lineNum <63) {
                         line = line.substring(0, line.indexOf(":") + 1) + " " + mongoDB.getEnabled();
                     }
-                } else if (line.trim().startsWith("uri:") && StringUtils.isNotBlank(mongoDB.getUrl())) {
+                } else if (line.trim().startsWith("uri:") && StringUtil.isNotBlank(mongoDB.getUrl())) {
                     if (lineNum>61 && lineNum <64) {
                         line = line.substring(0, line.indexOf(":") + 1) + " " + mongoDB.getUrl();
                     }
-                } else if (line.trim().startsWith("backup:") && StringUtils.isNotBlank(mongoDB.getBackup())) {
+                } else if (line.trim().startsWith("backup:") && StringUtil.isNotBlank(mongoDB.getBackup())) {
                     if (lineNum>62 && lineNum <65) {
                         line = line.substring(0, line.indexOf(":") + 1) + " " + mongoDB.getBackup();
                     }

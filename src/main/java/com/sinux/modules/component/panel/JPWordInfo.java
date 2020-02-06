@@ -12,6 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -122,7 +123,13 @@ public class JPWordInfo extends JPanel implements ActionListener {
             if (word.isSelected()) {
                 Map<String, SingleWord> appleMap = wordFormat.singleWordFormat(jFfile.getText()).stream().collect(Collectors.toMap(SingleWord::getWord, a -> a,(k1, k2)->k1));
                 ExportWord exportWord = new ExportWord();
-                exportWord.exec(new ArrayList<>(appleMap.values()), WordExportType.word.name());
+                List<String> sortw =new ArrayList<>(appleMap.keySet());
+                Collections.sort(sortw);
+                List<SingleWord> words = new ArrayList<>();
+                for(String w: sortw){
+                    words.add(appleMap.get(w));
+                }
+                exportWord.exec(words, WordExportType.word.name());
             } else if(phrase.isSelected()) {
                 List<SingleWord> words = wordFormat.phraseFormat(jFfile.getText());
                 ExportWord exportWord = new ExportWord();

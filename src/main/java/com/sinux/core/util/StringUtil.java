@@ -1,7 +1,6 @@
 package com.sinux.core.util;
 
 import com.google.common.collect.Lists;
-import com.sinux.core.utils.Encodes;
 import org.apache.commons.lang3.StringEscapeUtils;
 
 import java.io.UnsupportedEncodingException;
