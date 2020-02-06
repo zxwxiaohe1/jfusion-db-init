@@ -29,13 +29,13 @@ public class BaseFrame extends JFrame implements ActionListener {
     private JPanel jrp = new JPanel();
     private JSplitPane jsplr = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, true);
     private CardLayout cl = new CardLayout();
-    private String BUTTON_IMPORT_DATA = "数据导入";
-    private String BUTTON_CONF_MONGODB = "MongoDB配置";
+    //    private String BUTTON_IMPORT_DATA = "数据导入";
+//    private String BUTTON_CONF_MONGODB = "MongoDB配置";
     private String BUTTON_CONTENT_FORMAT = "英语内容格式化";
     private String BUTTON_FINISH = "完成";
     private JButton[] jbutton = {
-            new JButton(BUTTON_IMPORT_DATA), new JButton(BUTTON_CONF_MONGODB),
-            new JButton(BUTTON_CONTENT_FORMAT),new JButton(BUTTON_FINISH)
+//            new JButton(BUTTON_IMPORT_DATA), new JButton(BUTTON_CONF_MONGODB),
+            new JButton(BUTTON_CONTENT_FORMAT), new JButton(BUTTON_FINISH)
     };
 
     public BaseFrame() {
@@ -53,7 +53,7 @@ public class BaseFrame extends JFrame implements ActionListener {
         this.getLayeredPane().setOpaque(false);
         ((JComponent) this.getContentPane()).setOpaque(false);
 
-        for (int j = 0; j < 4; j++) {
+        for (int j = 0; j < 2; j++) {
             jlp.add(jbutton[j]);
             jbutton[j].setFont(new Font("Default", Font.BOLD, 15));
             jbutton[j].addActionListener(this);
@@ -94,11 +94,12 @@ public class BaseFrame extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getActionCommand().equals(BUTTON_IMPORT_DATA)) {
-            cl.show(jrp, "JPDbCl");
-        } else if (e.getActionCommand().equals(BUTTON_CONF_MONGODB)) {
-            cl.show(jrp, "JPMogoInfo");
-        } else if(e.getActionCommand().equals(BUTTON_CONTENT_FORMAT)){
+//        if (e.getActionCommand().equals(BUTTON_IMPORT_DATA)) {
+//            cl.show(jrp, "JPDbCl");
+//        } else if (e.getActionCommand().equals(BUTTON_CONF_MONGODB)) {
+//            cl.show(jrp, "JPMogoInfo");
+//        } else
+        if (e.getActionCommand().equals(BUTTON_CONTENT_FORMAT)) {
             cl.show(jrp, "JPWordInfo");
         } else if (e.getActionCommand().equals(BUTTON_FINISH)) {
             System.exit(0);
@@ -107,8 +108,8 @@ public class BaseFrame extends JFrame implements ActionListener {
 
     public void initJp() {
         jrp.setLayout(cl);
-        jrp.add(new JPDbCl(), "JPDbCl");
-        jrp.add(new JPMogoInfo(), "JPMogoInfo");
+//        jrp.add(new JPDbCl(), "JPDbCl");
+//        jrp.add(new JPMogoInfo(), "JPMogoInfo");
         jrp.add(new JPWordInfo(), "JPWordInfo");
 
     }
