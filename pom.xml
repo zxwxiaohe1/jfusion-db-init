@@ -11,7 +11,7 @@
         <poi.version>3.16</poi.version>
         <commons-lang3.version>3.3.2</commons-lang3.version>
         <guava.version>17.0</guava.version>
-        <spring.version>4.3.10.RELEASE</spring.version>
+        <spring.version>5.3.18</spring.version>
         <yaml.version>1.18</yaml.version>
     </properties>
 
